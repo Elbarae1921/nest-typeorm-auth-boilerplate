@@ -24,7 +24,9 @@ export class AuthService {
             );
             if (userExists) {
                 throw new ConflictException({
-                    error: "username/email already in use "
+                    error: "username/email already in use",
+                    statusCode: 409,
+                    message: "Conflict"
                 });
             }
             const user = await this.userService.createUser(
@@ -41,7 +43,8 @@ export class AuthService {
             const token = this.jwtService.sign(payload);
             return { token };
         } catch (err) {
-            console.error({ err });
+            if (err.status === 409) throw err;
+            console.error(err);
             throw new InternalServerErrorException();
         }
     }
@@ -52,12 +55,16 @@ export class AuthService {
 
             if (!user) {
                 throw new BadRequestException({
-                    error: "username or email does not exist"
+                    error: "username or email does not exist",
+                    statusCode: 400,
+                    message: "Bad Request"
                 });
             }
             if (!(await user.comparePassword(password))) {
-                return new BadRequestException({
-                    error: "Incorrect username or password"
+                throw new BadRequestException({
+                    error: "Incorrect username or password",
+                    statusCode: 400,
+                    message: "Bad Request"
                 });
             }
 
@@ -72,6 +79,7 @@ export class AuthService {
             });
             return { token };
         } catch (err) {
+            if (err.status === 400) throw err;
             console.error(err);
             throw new InternalServerErrorException();
         }
