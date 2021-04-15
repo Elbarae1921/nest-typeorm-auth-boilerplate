@@ -24,7 +24,7 @@ export class AuthService {
             );
             if (userExists) {
                 throw new ConflictException({
-                    message: "username/email already in use "
+                    error: "username/email already in use "
                 });
             }
             const user = await this.userService.createUser(
@@ -52,12 +52,12 @@ export class AuthService {
 
             if (!user) {
                 throw new BadRequestException({
-                    message: "username or email does not exist"
+                    error: "username or email does not exist"
                 });
             }
             if (!(await user.comparePassword(password))) {
                 return new BadRequestException({
-                    message: "Incorrect username or password"
+                    error: "Incorrect username or password"
                 });
             }
 
