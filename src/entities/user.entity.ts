@@ -1,9 +1,9 @@
-import { Entity, Column, Index, BeforeInsert, AfterInsert } from 'typeorm';
-import { classToPlain, Exclude } from 'class-transformer';
-import { hash, compare } from 'bcrypt';
-import { AbstractEntity } from './AbstractEntity';
+import { Entity, Column, Index, BeforeInsert, AfterInsert } from "typeorm";
+import { classToPlain, Exclude } from "class-transformer";
+import { hash, compare } from "bcrypt";
+import { AbstractEntity } from "./AbstractEntity";
 
-@Entity('users')
+@Entity("users")
 export class User extends AbstractEntity {
     constructor(username: string, email: string, password: string) {
         super();
@@ -29,7 +29,10 @@ export class User extends AbstractEntity {
 
     @BeforeInsert()
     async setPassword() {
-        this.password = await hash(this.password, Number(process.env.BCRYPT_ROUNDS));
+        this.password = await hash(
+            this.password,
+            Number(process.env.BCRYPT_ROUNDS)
+        );
     }
 
     @AfterInsert()
