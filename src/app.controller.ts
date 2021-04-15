@@ -1,5 +1,6 @@
 import { Controller, Post, UseGuards, Body, ValidationPipe, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from './auth/admin.guard';
 import { AuthService } from './auth/auth.service';
 import { AuthUser } from './auth/user.decorator';
 import { User } from './entities/user.entity';
@@ -17,6 +18,13 @@ export class AppController {
     @Get('profile')
     @UseGuards(AuthGuard())
     getProfile(@AuthUser() user: User) {
+        return user;
+    }
+
+    // admin only endpoint
+    @Get('admin')
+    @UseGuards(AuthGuard(), AdminGuard)
+    getAdmin(@AuthUser() user: User) {
         return user;
     }
 }
