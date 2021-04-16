@@ -11,11 +11,16 @@ import { AdminGuard } from "./auth/admin.guard";
 import { AuthService } from "./auth/auth.service";
 import { AuthUser } from "./auth/user.decorator";
 import { User } from "./entities/user.entity";
-import { LoginDto } from "./models/auth.model";
+import { LoginDto, RegisterDto } from "./models/auth.model";
 
 @Controller()
 export class AppController {
     constructor(private readonly authService: AuthService) {}
+
+    @Post("register")
+    async register(@Body(ValidationPipe) user: RegisterDto) {
+        return this.authService.register(user);
+    }
 
     @Post("login")
     async login(@Body(ValidationPipe) user: LoginDto) {
