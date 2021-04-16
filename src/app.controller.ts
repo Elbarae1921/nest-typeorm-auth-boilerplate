@@ -3,7 +3,6 @@ import {
     Post,
     UseGuards,
     Body,
-    ValidationPipe,
     Get
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
@@ -18,12 +17,12 @@ export class AppController {
     constructor(private readonly authService: AuthService) {}
 
     @Post("register")
-    async register(@Body(ValidationPipe) user: RegisterDto) {
+    async register(@Body() user: RegisterDto) {
         return this.authService.register(user);
     }
 
     @Post("login")
-    async login(@Body(ValidationPipe) user: LoginDto) {
+    async login(@Body() user: LoginDto) {
         return this.authService.login(user);
     }
 
