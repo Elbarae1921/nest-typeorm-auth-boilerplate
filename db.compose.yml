@@ -13,3 +13,6 @@ services:
     ports:
       - ${POSTGRES_PORT}:5432
     env_file: .env
+
+volumes:
+  pgdata:
