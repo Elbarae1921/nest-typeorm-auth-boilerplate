@@ -1,0 +1,15 @@
+# compose file for running the database only
+
+version: "3.7"
+
+services:
+
+  db:
+    container_name: db
+    image: postgres:9.6
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data:delegated
+    ports:
+      - ${POSTGRES_PORT}:5432
+    env_file: .env

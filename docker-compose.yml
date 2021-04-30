@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  db:
+    container_name: db
+    image: postgres:9.6
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data:delegated
+    ports:
+      - ${POSTGRES_PORT}:5433
+    env_file: .env
+
+  app:
+    container_name: app
+    restart: always
+    build: .
+    env_file: .env
+    ports:
+      - ${PORT}:${PORT}
+    external_links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

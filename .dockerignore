@@ -1,0 +1,12 @@
+pgdata
+node_modules
+.vscode
+.github
+.eslintignore
+.eslintrc
+.env.example
+.gitignore
+README.md
+docker-compose.yml
+db.compose.yml
+Dockerfile
