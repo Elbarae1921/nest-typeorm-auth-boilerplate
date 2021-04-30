@@ -42,7 +42,8 @@
     "docker:exec": "docker exec -it app sh",
     "docker:up": "docker-compose up -d",
     "docker:stop": "docker-compose stop",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "docker:db": "docker-compose --file db.compose.yml up -d"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
