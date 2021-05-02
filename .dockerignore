@@ -10,3 +10,4 @@ README.md
 docker-compose.yml
 db.compose.yml
 Dockerfile
+.env
