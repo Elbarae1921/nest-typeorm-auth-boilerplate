@@ -16,7 +16,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "migration:create": "typeorm migration:create",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
     "migration:up": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration:up:prod": "typeorm migration:run",
     "migration:down": "ts-node ./node_modules/typeorm/cli.js migration:revert",
