@@ -12,7 +12,7 @@ import { ConfigModule } from "@nestjs/config";
         ConfigModule.forRoot({
             isGlobal: true,
             envFilePath:
-                process.env.NODE_ENV === "production" ? ".env" : ".env.local"
+                process.env.NODE_ENV === "production" ? ".env.prod" : ".env"
         }),
         TypeOrmModule.forRootAsync({
             useClass: DatabaseConnectionService

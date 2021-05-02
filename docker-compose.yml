@@ -10,13 +10,13 @@ services:
       - ./pgdata:/var/lib/postgresql/data:delegated
     ports:
       - ${POSTGRES_PORT}:5433
-    env_file: .env
+    env_file: .env.prod
 
   app:
     container_name: app
     restart: always
     build: .
-    env_file: .env
+    env_file: .env.prod
     ports:
       - ${PORT}:${PORT}
     external_links:

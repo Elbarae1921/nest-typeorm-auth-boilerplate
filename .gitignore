@@ -38,4 +38,4 @@ pgdata/
 
 # env
 .env
-.env.local
+.env.prod
