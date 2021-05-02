@@ -5,11 +5,17 @@ import { AbstractEntity } from "./AbstractEntity";
 
 @Entity("users")
 export class User extends AbstractEntity {
-    constructor(username: string, email: string, password: string) {
+    constructor(
+        username: string,
+        email: string,
+        password: string,
+        admin?: boolean
+    ) {
         super();
         this.username = username;
         this.email = email;
         this.password = password;
+        this.admin = admin ?? false;
     }
 
     @Column({ length: 32 })
@@ -24,7 +30,7 @@ export class User extends AbstractEntity {
     @Index({ unique: true })
     email: string;
 
-    @Column()
+    @Column({ default: false })
     @Exclude()
     admin: boolean;
 
