@@ -1,6 +1,6 @@
 ## Description
 
-A production-ready NestJS boilerplate with authentication and TypeORM.
+A NestJS boilerplate with authentication and TypeORM.
 
 ## Setup
 
