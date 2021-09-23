@@ -4,13 +4,15 @@ services:
 
   db:
     container_name: db
-    image: postgres:9.6
+    image: postgres:13
     restart: always
     volumes:
-      - ./pgdata:/var/lib/postgresql/data:delegated
+      - pgdata:/var/lib/postgresql/data:delegated
     ports:
       - ${POSTGRES_PORT}:5433
     env_file: .env.prod
+    networks:
+      - app_net
 
   app:
     container_name: app
@@ -23,6 +25,12 @@ services:
       - db
     depends_on:
       - db
+    networks:
+      - app_net
 
 volumes:
   pgdata:
+
+networks:
+  app_net:
+    driver: bridge
