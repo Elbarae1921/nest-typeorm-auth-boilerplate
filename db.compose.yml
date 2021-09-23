@@ -6,8 +6,7 @@ services:
 
   db:
     container_name: db
-    image: postgres:9.6
-    restart: always
+    image: postgres:13
     volumes:
       - ./pgdata:/var/lib/postgresql/data:delegated
     ports:
