@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { Role } from "src/entities/user.entity";
 
 export class LoginDto {
     @IsString()
@@ -26,5 +27,5 @@ export interface AuthPayload {
 
     username: string;
 
-    isAdmin: boolean;
+    roles: Role[];
 }

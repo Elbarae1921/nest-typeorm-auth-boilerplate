@@ -38,7 +38,7 @@ export class AuthService {
             const payload: AuthPayload = {
                 id: user.id,
                 username: user.username,
-                isAdmin: user.admin
+                roles: user.roles
             };
             const token = this.jwtService.sign(payload);
             return { token };
@@ -71,7 +71,7 @@ export class AuthService {
             const payload: AuthPayload = {
                 id: user.id,
                 username: user.username,
-                isAdmin: user.admin
+                roles: user.roles
             };
             const token = this.jwtService.sign(payload, {
                 expiresIn: "365d", // expires in 365 days

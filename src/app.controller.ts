@@ -1,9 +1,10 @@
 import { Controller, Post, UseGuards, Body, Get } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { AdminGuard } from "./auth/admin.guard";
 import { AuthService } from "./auth/auth.service";
+import { Roles } from "./auth/roles.decorator";
+import { RolesGuard } from "./auth/roles.guard";
 import { AuthUser } from "./auth/user.decorator";
-import { User } from "./entities/user.entity";
+import { Role, User } from "./entities/user.entity";
 import { LoginDto, RegisterDto } from "./models/auth.model";
 
 @Controller()
@@ -26,6 +27,7 @@ export class AppController {
     }
 
     @Get("profile")
+    @Roles(Role.ADMIN, Role.USER)
     @UseGuards(AuthGuard())
     getProfile(@AuthUser() user: User) {
         return user;
@@ -33,7 +35,8 @@ export class AppController {
 
     // admin only endpoint
     @Get("admin")
-    @UseGuards(AuthGuard(), AdminGuard)
+    @Roles(Role.ADMIN)
+    @UseGuards(AuthGuard(), RolesGuard)
     getAdmin(@AuthUser() user: User) {
         return user;
     }

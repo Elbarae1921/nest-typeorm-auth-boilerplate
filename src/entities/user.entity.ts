@@ -3,19 +3,24 @@ import { classToPlain, Exclude } from "class-transformer";
 import { hash, compare } from "bcrypt";
 import { AbstractEntity } from "./AbstractEntity";
 
+export enum Role {
+    ADMIN = "admin",
+    USER = "user"
+}
+
 @Entity("users")
 export class User extends AbstractEntity {
     constructor(
         username: string,
         email: string,
         password: string,
-        admin?: boolean
+        roles?: Role[]
     ) {
         super();
         this.username = username;
         this.email = email;
         this.password = password;
-        this.admin = admin ?? false;
+        this.roles = roles ?? [Role.USER];
     }
 
     @Column({ length: 32 })
@@ -30,9 +35,9 @@ export class User extends AbstractEntity {
     @Index({ unique: true })
     email: string;
 
-    @Column({ default: false })
+    @Column({ type: "text", default: [Role.USER], array: true })
     @Exclude()
-    admin: boolean;
+    roles: Role[];
 
     @BeforeInsert()
     async setPassword() {
