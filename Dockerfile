@@ -16,5 +16,5 @@ COPY yarn.lock ./
 RUN yarn --prod
 COPY --from=build /usr/dist ./dist/
 RUN ls -a
-EXPOSE 5000
+EXPOSE ${PORT}
 CMD [ "yarn", "start:prod"]

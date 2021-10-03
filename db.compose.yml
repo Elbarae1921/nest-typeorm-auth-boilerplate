@@ -11,7 +11,7 @@ services:
       - ./pgdata:/var/lib/postgresql/data:delegated
     ports:
       - ${POSTGRES_PORT}:5432
-    env_file: .env
+    env_file: .env.local
 
 volumes:
   pgdata:
