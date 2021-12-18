@@ -1,0 +1,14 @@
+
+{
+    "workbench.editor.showTabs": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "eslint.format.enable": true,
+    "cSpell.words": [
+        "nestjs",
+        "prebuild"
+    ]
+}

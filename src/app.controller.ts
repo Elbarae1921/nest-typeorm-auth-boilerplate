@@ -1,10 +1,10 @@
-import { Controller, Post, UseGuards, Body, Get } from "@nestjs/common";
-import { AuthGuard } from "@nestjs/passport";
-import { AdminGuard } from "./auth/admin.guard";
-import { AuthService } from "./auth/auth.service";
-import { AuthUser } from "./auth/user.decorator";
-import { User } from "./entities/user.entity";
-import { LoginDto, RegisterDto } from "./models/auth.model";
+import { Controller, Post, UseGuards, Body, Get } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from './auth/admin.guard';
+import { AuthService } from './auth/auth.service';
+import { AuthUser } from './auth/user.decorator';
+import { User } from './entities/user.entity';
+import { LoginDto, RegisterDto } from './models/auth.model';
 
 @Controller()
 export class AppController {
@@ -12,27 +12,27 @@ export class AppController {
 
     @Get()
     async getHello() {
-        return "Hello World";
+        return 'Hello World';
     }
 
-    @Post("register")
+    @Post('register')
     async register(@Body() user: RegisterDto) {
         return this.authService.register(user);
     }
 
-    @Post("login")
+    @Post('login')
     async login(@Body() user: LoginDto) {
         return this.authService.login(user);
     }
 
-    @Get("profile")
+    @Get('profile')
     @UseGuards(AuthGuard())
     getProfile(@AuthUser() user: User) {
         return user;
     }
 
     // admin only endpoint
-    @Get("admin")
+    @Get('admin')
     @UseGuards(AuthGuard(), AdminGuard)
     getAdmin(@AuthUser() user: User) {
         return user;

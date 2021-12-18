@@ -57,6 +57,7 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "faker": "^5.5.3",
+    "nest-winston": "^1.6.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -65,7 +66,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
     "typeorm": "^0.2.32",
-    "typeorm-seeding": "^1.6.1"
+    "typeorm-seeding": "^1.6.1",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",

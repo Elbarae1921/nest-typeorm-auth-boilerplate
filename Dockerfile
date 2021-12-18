@@ -1,20 +1,26 @@
 FROM node:15-alpine as build
-WORKDIR /usr
+WORKDIR /app
 COPY package.json ./
 COPY yarn.lock ./
 RUN yarn
 COPY . .
 RUN yarn build
-RUN ls -a
 
-## this is stage two, where the app actually runs
-FROM node:15-alpine
-WORKDIR /usr
+# stage to install only production deps
+FROM node:15-alpine as deps
+WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json ./
 COPY yarn.lock ./
 RUN yarn --prod
-COPY --from=build /usr/dist ./dist/
+
+## this is stage two, where the app actually runs
+FROM node:15-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package.json ./
+COPY yarn.lock ./
+COPY --from=build /app/dist ./dist/
+COPY --from=deps /app/node_modules ./node_modules/
 RUN ls -a
-EXPOSE 5000
 CMD [ "yarn", "start:prod"]

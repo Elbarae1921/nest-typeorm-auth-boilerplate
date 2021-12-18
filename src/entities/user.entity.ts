@@ -1,9 +1,9 @@
-import { Entity, Column, Index, BeforeInsert, AfterInsert } from "typeorm";
-import { classToPlain, Exclude } from "class-transformer";
-import { hash, compare } from "bcrypt";
-import { AbstractEntity } from "./AbstractEntity";
+import { Entity, Column, Index, BeforeInsert, AfterInsert } from 'typeorm';
+import { classToPlain, Exclude } from 'class-transformer';
+import { hash, compare } from 'bcrypt';
+import { AbstractEntity } from './AbstractEntity';
 
-@Entity("users")
+@Entity('users')
 export class User extends AbstractEntity {
     constructor(
         username: string,
