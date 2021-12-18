@@ -1,0 +1,3 @@
+# docker volumes are kept in this directory
+*
+!.gitignore

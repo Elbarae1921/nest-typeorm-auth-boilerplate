@@ -1,14 +1,14 @@
-import { Entity, Column, Index, BeforeInsert, AfterInsert } from "typeorm";
-import { classToPlain, Exclude } from "class-transformer";
-import { hash, compare } from "bcrypt";
-import { AbstractEntity } from "./AbstractEntity";
+import { Entity, Column, Index, BeforeInsert, AfterInsert } from 'typeorm';
+import { classToPlain, Exclude } from 'class-transformer';
+import { hash, compare } from 'bcrypt';
+import { AbstractEntity } from './AbstractEntity';
 
 export enum Role {
-    ADMIN = "admin",
-    USER = "user"
+    ADMIN = 'admin',
+    USER = 'user'
 }
 
-@Entity("users")
+@Entity('users')
 export class User extends AbstractEntity {
     constructor(
         username: string,
@@ -35,7 +35,7 @@ export class User extends AbstractEntity {
     @Index({ unique: true })
     email: string;
 
-    @Column({ type: "text", default: [Role.USER], array: true })
+    @Column({ type: 'text', default: [Role.USER], array: true })
     @Exclude()
     roles: Role[];
 

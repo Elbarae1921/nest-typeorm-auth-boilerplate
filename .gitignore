@@ -33,9 +33,6 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# docker volume
-pgdata/
-
 # env
 .env
 .env.prod
