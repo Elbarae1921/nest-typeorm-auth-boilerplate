@@ -1,3 +1,7 @@
+# ⚠️ This is outdated
+I don't recommend following this template anymore as it's outdated, and I think there are far better ORMs than TypeORM that you should use nowadays.
+here's a newer starter project that uses Prisma ORM: https://github.com/Elbarae1921/nestjs-auth-starter
+
 ## Description
 
 A NestJS boilerplate with authentication and TypeORM.
